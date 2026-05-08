@@ -149,20 +149,6 @@
     #float-cta.show { opacity: 1; transform: none; pointer-events: auto; }
     #float-cta:hover { transform: translateY(-2px); box-shadow: 0 12px 44px rgba(150,33,168,.52); }
 
-    /* ══ FLOAT WHATSAPP ══════════════════════════ */
-    #float-wa {
-      position: fixed; bottom: 28px; left: 100px; z-index: 400;
-      width: 48px; height: 48px; border-radius: 50%;
-      background: #25d366;
-      display: flex; align-items: center; justify-content: center;
-      box-shadow: 0 4px 22px rgba(37,211,102,.42);
-      opacity: 0; transform: translateY(16px); transition: opacity .4s, transform .4s, box-shadow .25s;
-      pointer-events: none;
-    }
-    #float-wa.show { opacity: 1; transform: none; pointer-events: auto; }
-    #float-wa:hover { transform: translateY(-2px); box-shadow: 0 10px 32px rgba(37,211,102,.55); }
-    @media (max-width: 860px) { #float-wa { left: 70px; bottom: 16px; width: 44px; height: 44px; } }
-
     /* ══ NAV ═════════════════════════════════════ */
     nav {
       position: fixed; top: 0; right: 0; left: 0; z-index: 200; padding: 16px 52px;
@@ -567,9 +553,6 @@
 </div>
 <div id="progress-bar"></div>
 <a href="#contact" id="float-cta">בואו נתאם ←</a>
-<a href="https://wa.me/972506496316" id="float-wa" target="_blank" rel="noopener" aria-label="WhatsApp">
-  <svg viewBox="0 0 24 24" fill="white" width="22" height="22"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M11.999 2C6.477 2 2 6.477 2 12c0 1.989.574 3.842 1.563 5.408L2 22l4.704-1.538A9.953 9.953 0 0 0 12 22c5.523 0 10-4.477 10-10S17.523 2 12 2h-.001z" fill-rule="evenodd" clip-rule="evenodd"/></svg>
-</a>
 
 <!-- ══ NAV ══════════════════════════════════════════════ -->
 <nav id="nav">
@@ -945,7 +928,6 @@
       <div class="c-fact"><div class="c-dot"></div><div class="c-txt">כל הרצאה מותאמת אישית לקהל ולמסגרת</div></div>
       <div class="c-fact"><div class="c-dot"></div><div class="c-txt">זמינה בכל הארץ ובפורמט אונליין</div></div>
       <div class="c-fact"><div class="c-dot"></div><div class="c-txt"><a href="mailto:stavella2004@gmail.com">stavella2004@gmail.com</a></div></div>
-      <div class="c-fact"><div class="c-dot" style="background:#25d366"></div><div class="c-txt"><a href="https://wa.me/972506496316" target="_blank" rel="noopener" style="color:#25d366">WhatsApp: 050-649-6316</a></div></div>
     </div>
 
     <div class="fu d1">
@@ -986,10 +968,6 @@
   <div class="footer-in">
     <span class="footer-logo">סתיו אלה</span>
     <div class="footer-socials">
-      <!-- WhatsApp -->
-      <a href="https://wa.me/972506496316" class="social-btn" target="_blank" rel="noopener" aria-label="WhatsApp" title="WhatsApp" style="color:#25d366;border-color:rgba(37,211,102,.3)">
-        <svg viewBox="0 0 24 24" fill="currentColor" width="17" height="17"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M11.999 2C6.477 2 2 6.477 2 12c0 1.989.574 3.842 1.563 5.408L2 22l4.704-1.538A9.953 9.953 0 0 0 12 22c5.523 0 10-4.477 10-10S17.523 2 12 2h-.001z" fill-rule="evenodd" clip-rule="evenodd"/></svg>
-      </a>
       <!-- Instagram -->
       <a href="https://www.instagram.com/stav.ella?igsh=ZWE2dTAyeXRqd3pz" class="social-btn" target="_blank" rel="noopener" aria-label="Instagram" title="Instagram">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
@@ -1049,14 +1027,12 @@
   const bar = document.getElementById('progress-bar');
   const nav = document.getElementById('nav');
   const fCta = document.getElementById('float-cta');
-  const fWa  = document.getElementById('float-wa');
 
   window.addEventListener('scroll', () => {
     const s = window.scrollY, h = document.documentElement.scrollHeight - window.innerHeight;
     bar.style.transform = `scaleX(${s/h})`;
     nav.classList.toggle('stuck', s > 40);
     fCta.classList.toggle('show', s > 80);
-    fWa.classList.toggle('show',  s > 80);
   }, { passive: true });
 
   const hbg = document.getElementById('hbg'), mob = document.getElementById('mob');
