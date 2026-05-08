@@ -3,8 +3,21 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="סתיו אלה | הרצאות, סדנאות ותהליכים בתחומי מנהיגות, אקטיביזם דיגיטלי ואוריינות פיננסית">
+  <meta name="description" content="סתיו אלה — מרצה, יזמת ואקטיביסטית. הרצאות וסדנאות בנושאי מנהיגות, אקטיביזם דיגיטלי ואוריינות פיננסית לכל קהל.">
   <title>סתיו אלה | הרצאות וסדנאות</title>
+
+  <!-- Favicon -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><defs><linearGradient id='g' x1='0' y1='0' x2='1' y2='1'><stop offset='0' stop-color='%23f5479d'/><stop offset='1' stop-color='%239621a8'/></linearGradient></defs><rect width='32' height='32' rx='8' fill='url(%23g)'/><text x='16' y='23' font-family='Arial,sans-serif' font-weight='900' font-size='19' fill='white' text-anchor='middle'>ס</text></svg>">
+
+  <!-- Open Graph — for WhatsApp / Facebook / LinkedIn sharing -->
+  <meta property="og:title"       content="סתיו אלה | הרצאות, סדנאות ותהליכים">
+  <meta property="og:description" content="כלים פרקטיים לאקטיביזם דיגיטלי, עצמאות כלכלית ואימפקט חברתי. מרצה, יזמת, אקטיביסטית.">
+  <meta property="og:image"       content="https://stavellaweb.netlify.app/photo.jpg">
+  <meta property="og:url"         content="https://stavellaweb.netlify.app">
+  <meta property="og:type"        content="website">
+  <meta property="og:locale"      content="he_IL">
+  <meta name="twitter:card"       content="summary_large_image">
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;800;900&display=swap" rel="stylesheet">
@@ -30,7 +43,7 @@
       --rl:    22px;
     }
 
-    html { scroll-behavior: smooth; }
+    html { scroll-behavior: smooth; scroll-padding-top: 80px; }
     body {
       font-family: 'Heebo', sans-serif;
       background: var(--bg); color: var(--text);
@@ -364,7 +377,7 @@
     .media-feat-link { font-size: .88rem; font-weight: 700; color: var(--pk); }
     .media-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; }
     .media-card {
-      display: block; text-decoration: none;
+      display: block; text-decoration: none; cursor: pointer;
       background: var(--card); border: 1px solid var(--bord2); border-radius: var(--r); padding: 22px;
       position: relative; overflow: hidden;
       transition: transform .25s, box-shadow .25s, border-color .25s;
@@ -522,10 +535,10 @@
 
 <!-- ══ HERO ══════════════════════════════════════════════ -->
 <section id="hero">
-  <div class="hero-video-wall">
-    <video autoplay muted loop playsinline preload="auto"><source src="./vid1.mp4" type="video/mp4"></video>
-    <video autoplay muted loop playsinline preload="auto"><source src="./vid2.mp4" type="video/mp4"></video>
-    <video autoplay muted loop playsinline preload="auto"><source src="./vid3.mp4" type="video/mp4"></video>
+  <div class="hero-video-wall" id="vwall">
+    <video autoplay muted loop playsinline preload="none" data-src="./vid1.mp4"></video>
+    <video autoplay muted loop playsinline preload="none" data-src="./vid2.mp4"></video>
+    <video autoplay muted loop playsinline preload="none" data-src="./vid3.mp4"></video>
   </div>
   <div class="hero-bg"></div>
   <div class="hero-grid"></div>
@@ -878,9 +891,10 @@
       <form id="form">
         <div class="f-row">
           <div class="f-g"><label for="name">שם מלא *</label><input type="text" id="name" name="name" placeholder="הכניסו שם מלא" required></div>
-          <div class="f-g"><label for="org">מוסד / גוף *</label><input type="text" id="org" name="org" placeholder="שם הגוף" required></div>
+          <div class="f-g"><label for="email">מייל ליצירת קשר *</label><input type="email" id="email" name="email" placeholder="your@email.com" required></div>
         </div>
         <div class="f-row">
+          <div class="f-g"><label for="org">מוסד / גוף</label><input type="text" id="org" name="org" placeholder="שם הגוף"></div>
           <div class="f-g"><label for="loc">מיקום</label><input type="text" id="loc" name="location" placeholder="עיר / אזור"></div>
           <div class="f-g">
             <label for="lec">הרצאה מבוקשת</label>
@@ -945,12 +959,16 @@
 </footer>
 
 <script>
-  // Page intro
+  // Page intro — lock scroll while showing
   (function() {
+    document.body.style.overflow = 'hidden';
     var intro = document.getElementById('page-intro');
     setTimeout(function() {
       intro.classList.add('out');
-      setTimeout(function() { intro.style.display = 'none'; }, 750);
+      setTimeout(function() {
+        intro.style.display = 'none';
+        document.body.style.overflow = '';
+      }, 750);
     }, 1700);
   })();
 
@@ -968,6 +986,15 @@
   const hbg = document.getElementById('hbg'), mob = document.getElementById('mob');
   hbg.addEventListener('click', () => { hbg.classList.toggle('open'); mob.classList.toggle('open'); });
   function cm() { hbg.classList.remove('open'); mob.classList.remove('open'); }
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') cm(); });
+
+  // Load videos only on desktop (saves ~25MB on mobile)
+  if (window.innerWidth > 860) {
+    document.querySelectorAll('#vwall video').forEach(v => {
+      var src = v.dataset.src;
+      if (src) { v.src = src; v.load(); }
+    });
+  }
 
   const obs = new IntersectionObserver(es => es.forEach(e => { if(e.isIntersecting) e.target.classList.add('vis'); }), { threshold: 0.06, rootMargin: '0px 0px -24px 0px' });
   document.querySelectorAll('.fu').forEach(el => obs.observe(el));
