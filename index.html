@@ -322,7 +322,7 @@
       opacity: .38; pointer-events: none;
     }
     .pull-quote blockquote { font-size: 1.18rem; font-weight: 700; line-height: 1.62; color: var(--text); margin-bottom: 14px; position: relative; }
-    .pull-quote cite { font-size: .78rem; color: var(--mute); font-style: normal; font-weight: 500; }
+    .pull-quote cite { font-size: .78rem; color: var(--mute); font-style: normal; font-weight: 500; display: block; text-align: left; }
 
     /* ══ MISSION ═════════════════════════════════ */
     .mission-body { font-size: 1.12rem; color: var(--dim); line-height: 1.82; max-width: 680px; font-weight: 300; margin-bottom: 36px; }
@@ -543,6 +543,16 @@
     @keyframes hSlide  { from { opacity:0; transform:translateX(72px) skewX(-9deg); filter:blur(10px); } to { opacity:1; transform:none; filter:none; } }
     @keyframes hFadeUp { from { opacity:0; transform:translateY(22px); }  to { opacity:1; transform:none; } }
     @keyframes grPulse { 0%,100% { filter:brightness(1) saturate(1); } 50% { filter:brightness(1.18) saturate(1.25); } }
+
+    /* ══ ACCESSIBILITY ═══════════════════════════ */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: .01ms !important;
+      }
+      .pill, .ht1, .ht2, .hero-sub, .hero-ctas { opacity: 1; }
+    }
 
     /* ══ RESPONSIVE ══════════════════════════════ */
     @media (max-width: 860px) {
@@ -958,7 +968,10 @@
           <div class="f-g"><label for="email">מייל ליצירת קשר *</label><input type="email" id="email" name="email" placeholder="your@email.com" required></div>
         </div>
         <div class="f-row">
+          <div class="f-g"><label for="phone">טלפון</label><input type="tel" id="phone" name="phone" placeholder="050-0000000"></div>
           <div class="f-g"><label for="org">מוסד / גוף</label><input type="text" id="org" name="org" placeholder="שם הגוף"></div>
+        </div>
+        <div class="f-row">
           <div class="f-g"><label for="loc">מיקום</label><input type="text" id="loc" name="location" placeholder="עיר / אזור"></div>
           <div class="f-g">
             <label for="lec">הרצאה מבוקשת</label>
@@ -1084,11 +1097,14 @@
   document.getElementById('form').addEventListener('submit', e => {
     e.preventDefault();
     const f = e.target;
+    const btn = f.querySelector('.btn-submit');
+    btn.textContent = 'שולח...';
+    btn.disabled = true;
     fetch('https://formspree.io/f/mzdojgjb', {
       method: 'POST',
       body: new FormData(f),
       headers: { 'Accept': 'application/json' }
-    }).then(res => {
+    }).then(() => {
       f.style.display = 'none';
       document.getElementById('ok').style.display = 'block';
     }).catch(() => {
